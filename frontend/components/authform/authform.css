@@ -1,0 +1,10 @@
+.eAuthForm {
+    margin: 0 auto;
+    width: 400px;
+    padding: 24px;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    margin-left: -200px;
+    background-color: #ebf4fb;
+}

@@ -15,7 +15,9 @@
 *.iws
 *.iml
 *.ipr
-
+npm-debug.log
+/node_modules/
+*.bundle.js
 ### NetBeans ###
 /nbproject/private/
 /build/
