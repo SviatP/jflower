@@ -1,10 +1,10 @@
 import React from 'react'
-import { render } from 'react-dom'
-import { renderToString } from 'react-dom/server'
+import {render} from 'react-dom'
+import {renderToString} from 'react-dom/server'
 import thunk from 'redux-thunk'
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
 
-import { createStore, applyMiddleware } from 'redux'
+import {applyMiddleware, createStore} from 'redux'
 import testmiddleware from './middlewares/testmiddleware'
 import promise from 'redux-promise'
 

@@ -1,33 +1,46 @@
+let path = require ('path');
+let ExtractTextPlugin = require ('extract-text-webpack-plugin');
 
-var path = require ('path');
-var ExtractTextPlugin = require ('extract-text-webpack-plugin');
-
-var clientSrcPath = path.resolve (__dirname, 'frontend');
-var serverSrcPath = path.resolve (__dirname, 'src/main/resources/static');
-
+let clientSrcPath = path.resolve (__dirname, 'frontend');
+let serverSrcPath = path.resolve (__dirname, 'src/main/resources/static');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
-    entry: clientSrcPath + '/components/app/temp.js',
+    entry: clientSrcPath + '/index.jsx',
 
     output: {
         path: serverSrcPath,
-        filename: 'app.bundle.js'
+        filename: 'bundle.js'
     },
 
     plugins: [
         new ExtractTextPlugin('styles.css'),
+        new HtmlWebpackPlugin({
+            hash: true
+        })
     ],
 
     module: {
         rules: [
-            {test: /.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-            {test: /.css/, exclude: /node_modules/, use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        { loader: 'css-loader', options: { modules: true } }
-                    ]
-                })}
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+            },
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
+            },
+            {
+                test: /\.(png|jpg|svg|gif)$/,
+                use: {
+                    loader: 'url-loader'
+                }
+            }
         ]
+    },
+    resolve: {
+        extensions: ['.js', '.jsx']
     }
 };
